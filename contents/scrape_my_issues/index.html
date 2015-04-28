@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>Sketch</title>
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/issues.js"></script>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  .my-issues {
+    font-size: 50px;
+    line-height: 1;
+    margin: -25px 0 0 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    /*left: 50px;*/
+    text-align: center;
+    width: 100%;
+    z-index: 1000;
+  }
+  #draw-container {
+    overflow: hidden;
+    position: relative;
+  }
+  #draw-container img {
+    display: none;
+    left: 0;
+    height: auto;
+    position: absolute;
+    top: 0;
+    width: auto;
+    max-height: 500px;
+    max-width: 500px;
+  }
+</style>
+<script>
+  (function() {
+    var container;
+    var MIN_IMAGE_SIZE = 150;
+
+    window.onload = function() {    
+      container = $('#draw-container');
+      initContainer();
+      var img = new Img();
+    }
+
+    function initContainer() {
+      container.width($(window).width());
+      container.height($(window).height());
+    }
+
+    var Img = function() {
+      this.init();
+    };
+
+    Img.prototype = {
+      init: function() {
+        var _self = this;
+        for (var i = 0; i < ISSUES.length; i+=2) {
+          var _className = 'img' + i/2;
+          this.add(ISSUES[i+1], ISSUES[i], _className, container);
+        };
+        setTimeout(function(){
+          _self.animate();
+        }, 1000);
+      },
+
+      add: function(_src, _title, _className, _container) {
+        $('<img class="' + _className + '" />').appendTo(_container);
+        var $img = $('.' + _className)
+        $img.attr({
+          'title': _title,
+          'src': _src
+        });
+        $img.on('load', function() {
+          $(this).css({
+            top: (Math.random() * $(window).width()) - ($(this).width() / 4) + 'px',
+            left: (Math.random() * $(window).width()) - ($(this).width() / 4)  + 'px',
+            width: Math.random() * ($(this).width() - MIN_IMAGE_SIZE) + MIN_IMAGE_SIZE,
+            zIndex: Math.floor(Math.random() * 100 + 1)
+          });
+        })
+      },
+
+      hide: function(_target) {
+        _target.hide();
+      },
+
+      show: function(_target) {
+        _target.show();
+      },
+
+      animate: function() {
+        var _img_num = container.find('img').length;
+        var _timer;
+        var _counter = 0;
+        _timer = setInterval(function() {
+          _counter++;
+          $('.img' + _counter).show();
+          if (_counter >= _img_num ) clearInterval(_timer);
+        }, 200);          
+      }
+    }
+  })($);
+</script>
+</head>
+<body>
+  <h1 class="my-issues">私の関心の対象</h1>
+  <div id="draw-container"></div>
+</body>
+</html>
