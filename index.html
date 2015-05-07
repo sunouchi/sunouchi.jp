@@ -2,29 +2,12 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8" />
-<title>Sketch</title>
+<title>sunouchi.jp</title>
+<link rel="stylesheet" href="contents/home/style.css">
 <script src="contents/common/js/jquery-1.11.2.min.js"></script>
 <script src="contents/common/js/delegate.js"></script>
 <script src="contents/common/js/string-custom.js"></script>
 <script src="contents/common/js/text-shuffle.js"></script>
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-  }
-  #iframe-container {
-    display: none;
-    /*height: 1000px;*/
-    width: 100%;
-  }
-  #iframe-container iframe {
-    /*height: 1000px;*/
-    width: 100%;
-  }  
-  .nav-list li {
-    text-transform: uppercase;
-  }
-</style>
 <script>
   (function() {
     var container;
@@ -60,20 +43,23 @@
 </script>
 </head>
 <body>
-  <div id="iframe-container">
-    <iframe src="contents/scrape_my_issues/index.html" frameborder="0"></iframe>
-  </div>
-  <div id="nav">
-    <nav>
-      <ul class="nav-list" id="nav-list">
-        <li><a href="http://sunouchi.jp/blog/">blog</a></li>
-        <li><a href="https://twitter.com/sunouchi">twitter</a></li>
-        <li><a href="https://www.facebook.com/takanari.sunouchi">facebook</a></li>
-        <li><a href="http://sunouchi.tumblr.com/">tumblr</a></li>
-        <li><a href="https://github.com/sunouchi">github</a></li>
-        <li><a href="mailto:t@sunouchi.jp">contact</a></li>
-      </ul>
-    </nav>
+  <div class="wrap">  
+    <div class="iframe-container" id="iframe-container">
+      <iframe src="contents/scrape_my_issues/index.html" frameborder="0"></iframe>
+    </div>
+    <div class="nav">
+      <nav>
+        <ul class="nav-list clearfix" id="nav-list">
+          <li class="bl"><a href="http://sunouchi.jp/blog/">blog</a></li>
+          <li class="tw"><a href="https://twitter.com/sunouchi">twitter</a></li>
+          <li class="fb"><a href="https://www.facebook.com/takanari.sunouchi">facebook</a></li>
+          <li class="tb"><a href="http://sunouchi.tumblr.com/">tumblr</a></li>
+          <li class="gh"><a href="https://github.com/sunouchi">github</a></li>
+          <li class="ml"><a href="mailto:t@sunouchi.jp">contact</a></li>
+          <li class=""><a href="#">fjkdalfjdksal;fjkdsl;a;;jfdksl;afjkls;a</a></li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </body>
 </html>

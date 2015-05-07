@@ -46,6 +46,7 @@ TextShuffle.prototype = {
   onInterval: function() {
     this.timeCurrent = new Date().getTime() - this.timeStart ;
     var _percent = this.timeCurrent / this.duration;
+    // console.log(_percent);
 
     var _str = '';
     for (var i = 0; i < this.originalStr.length; i++) {
