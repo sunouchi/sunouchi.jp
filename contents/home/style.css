@@ -48,7 +48,8 @@ a {
   float: left;
   letter-spacing: .3px;
   list-style: none;
-  margin-right: 20px;
+  /*margin-right: 20px;*/
+  margin: 0;
   text-transform: lowercase;
 }
 
@@ -56,12 +57,12 @@ a {
   text-decoration: none;
 }
 
-.nav-list .bl { width: 31px; }
-.nav-list .tw { width: 49px; }
-.nav-list .fb { width: 65px; }
-.nav-list .tb { width: 49px; }
-.nav-list .gh { width: 46px; }
-.nav-list .ml { width: 54px; }
+.nav-list .bl { width: 51px; }
+.nav-list .tw { width: 69px; }
+.nav-list .fb { width: 85px; }
+.nav-list .tb { width: 69px; }
+.nav-list .gh { width: 66px; }
+.nav-list .ml { width: 74px; }
 
 /* .clearfix */
 .clearfix:after {  

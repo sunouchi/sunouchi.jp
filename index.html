@@ -12,6 +12,7 @@
   (function() {
     var container;
     var iframes;
+    var timer = [];
 
     window.onload = function() {
       container = $('#iframe-container');
@@ -24,11 +25,25 @@
       // #nav-listのliのイベントハンドラ
       for (var i = 0; i < $('#nav-list').find('li').length; i++) {
         _li = $('#nav-list').find('li').eq(i);
-        // console.log($(this).find('a'));
-        new TextShuffle(_li.text(), _li.find('a'));
+        new TextShuffle(_li.attr('data-text'), _li.find('a'));
 
-        _li.find('a').on('mouseover', function() {
-          new TextShuffle($(this).parent().text(), $(this).parent().find('a'));
+        // _li.find('a').on('mouseover', function(e) {
+        //   var _isRunning = $(this).parent().attr('data-is-running');
+        //   var _timer;
+        //   console.log(_isRunning);
+        //   if (_isRunning !== true) {
+        //     _isRunning = true;
+        //     new TextShuffle($(this).parent().attr('data-text'), $(this).parent().find('a'));
+        //     _timer = setTimeout(function() {
+        //       _isRunning = false;
+        //       clearTimeout(_timer);
+        //     }, 1000);
+        //   };
+        //   return false;
+        // });
+        _li.find('a').hover(function() {
+          $(this).parent().find('a').stop();
+          new TextShuffle($(this).parent().attr('data-text'), $(this).parent().find('a'));          
         });
       };
     }
@@ -50,13 +65,13 @@
     <div class="nav">
       <nav>
         <ul class="nav-list clearfix" id="nav-list">
-          <li class="bl"><a href="http://sunouchi.jp/blog/">blog</a></li>
-          <li class="tw"><a href="https://twitter.com/sunouchi">twitter</a></li>
-          <li class="fb"><a href="https://www.facebook.com/takanari.sunouchi">facebook</a></li>
-          <li class="tb"><a href="http://sunouchi.tumblr.com/">tumblr</a></li>
-          <li class="gh"><a href="https://github.com/sunouchi">github</a></li>
-          <li class="ml"><a href="mailto:t@sunouchi.jp">contact</a></li>
-          <li class=""><a href="#">fjkdalfjdksal;fjkdsl;a;;jfdksl;afjkls;a</a></li>
+          <li class="bl" data-text="blog"><a href="http://sunouchi.jp/blog/">blog</a></li>
+          <li class="tw" data-text="twitter"><a href="https://twitter.com/sunouchi">twitter</a></li>
+          <li class="fb" data-text="facebook"><a href="https://www.facebook.com/takanari.sunouchi">facebook</a></li>
+          <li class="tb" data-text="tumblr"><a href="http://sunouchi.tumblr.com/">tumblr</a></li>
+          <li class="gh" data-text="github"><a href="https://github.com/sunouchi">github</a></li>
+          <li class="ml" data-text="contact"><a href="mailto:t@sunouchi.jp">contact</a></li>
+          <li class="" data-text="hogehogehogehogehogehogeghogehogehoge"><a href="#">hogehogehogehogehogehogeghogehogehoge</a></li>
         </ul>
       </nav>
     </div>
