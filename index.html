@@ -3,113 +3,77 @@
 <head>
 <meta charset="utf-8" />
 <title>Sketch</title>
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/issues.js"></script>
+<script src="contents/common/js/jquery-1.11.2.min.js"></script>
+<script src="contents/common/js/delegate.js"></script>
+<script src="contents/common/js/string-custom.js"></script>
+<script src="contents/common/js/text-shuffle.js"></script>
 <style>
   body {
     margin: 0;
     padding: 0;
   }
-  .my-issues {
-    font-size: 50px;
-    line-height: 1;
-    margin: -25px 0 0 0;
-    padding: 0;
-    position: absolute;
-    top: 50%;
-    /*left: 50px;*/
-    text-align: center;
-    width: 100%;
-    z-index: 1000;
-  }
-  #draw-container {
-    overflow: hidden;
-    position: relative;
-  }
-  #draw-container img {
+  #iframe-container {
     display: none;
-    left: 0;
-    height: auto;
-    position: absolute;
-    top: 0;
-    width: auto;
-    max-height: 500px;
-    max-width: 500px;
+    /*height: 1000px;*/
+    width: 100%;
+  }
+  #iframe-container iframe {
+    /*height: 1000px;*/
+    width: 100%;
+  }  
+  .nav-list li {
+    text-transform: uppercase;
   }
 </style>
 <script>
   (function() {
     var container;
-    var MIN_IMAGE_SIZE = 150;
+    var iframes;
 
-    window.onload = function() {    
-      container = $('#draw-container');
+    window.onload = function() {
+      container = $('#iframe-container');
+      iframes = $('#iframe-container iframe');
+      container.css({
+        width: '100%'
+      });
       initContainer();
-      var img = new Img();
+
+      // #nav-listのliのイベントハンドラ
+      for (var i = 0; i < $('#nav-list').find('li').length; i++) {
+        _li = $('#nav-list').find('li').eq(i);
+        // console.log($(this).find('a'));
+        new TextShuffle(_li.text(), _li.find('a'));
+
+        _li.find('a').on('mouseover', function() {
+          new TextShuffle($(this).parent().text(), $(this).parent().find('a'));
+        });
+      };
     }
 
     function initContainer() {
-      container.width($(window).width());
+      // container.width($(window).width());
       container.height($(window).height());
-    }
-
-    var Img = function() {
-      this.init();
-    };
-
-    Img.prototype = {
-      init: function() {
-        var _self = this;
-        for (var i = 0; i < ISSUES.length; i+=2) {
-          var _className = 'img' + i/2;
-          this.add(ISSUES[i+1], ISSUES[i], _className, container);
-        };
-        setTimeout(function(){
-          _self.animate();
-        }, 1000);
-      },
-
-      add: function(_src, _title, _className, _container) {
-        $('<img class="' + _className + '" />').appendTo(_container);
-        var $img = $('.' + _className)
-        $img.attr({
-          'title': _title,
-          'src': _src
-        });
-        $img.on('load', function() {
-          $(this).css({
-            top: (Math.random() * $(window).width()) - ($(this).width() / 4) + 'px',
-            left: (Math.random() * $(window).width()) - ($(this).width() / 4)  + 'px',
-            width: Math.random() * ($(this).width() - MIN_IMAGE_SIZE) + MIN_IMAGE_SIZE,
-            zIndex: Math.floor(Math.random() * 100 + 1)
-          });
-        })
-      },
-
-      hide: function(_target) {
-        _target.hide();
-      },
-
-      show: function(_target) {
-        _target.show();
-      },
-
-      animate: function() {
-        var _img_num = container.find('img').length;
-        var _timer;
-        var _counter = 0;
-        _timer = setInterval(function() {
-          _counter++;
-          $('.img' + _counter).show();
-          if (_counter >= _img_num ) clearInterval(_timer);
-        }, 200);          
-      }
+      // iframes.width($(window).width());
+      iframes.height($(window).height());
     }
   })($);
 </script>
 </head>
 <body>
-  <h1 class="my-issues">私の関心の対象</h1>
-  <div id="draw-container"></div>
+  <div id="iframe-container">
+    <iframe src="contents/scrape_my_issues/index.html" frameborder="0"></iframe>
+  </div>
+  <div id="nav">
+    <nav>
+      <ul class="nav-list" id="nav-list">
+        <li><a href="http://sunouchi.jp/blog/">blog</a></li>
+        <li><a href="https://twitter.com/sunouchi">twitter</a></li>
+        <li><a href="https://www.facebook.com/takanari.sunouchi">facebook</a></li>
+        <li><a href="http://sunouchi.tumblr.com/">tumblr</a></li>
+        <li><a href="https://github.com/sunouchi">github</a></li>
+        <li><a href="mailto:t@sunouchi.jp">contact</a></li>
+      </ul>
+    </nav>
+  </div>
 </body>
 </html>
