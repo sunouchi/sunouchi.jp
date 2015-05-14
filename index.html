@@ -22,30 +22,23 @@
       });
       initContainer();
 
-      // #nav-listのliのイベントハンドラ
-      for (var i = 0; i < $('#nav-list').find('li').length; i++) {
-        _li = $('#nav-list').find('li').eq(i);
-        new TextShuffle(_li.attr('data-text'), _li.find('a'));
-
-        // _li.find('a').on('mouseover', function(e) {
-        //   var _isRunning = $(this).parent().attr('data-is-running');
-        //   var _timer;
-        //   console.log(_isRunning);
-        //   if (_isRunning !== true) {
-        //     _isRunning = true;
-        //     new TextShuffle($(this).parent().attr('data-text'), $(this).parent().find('a'));
-        //     _timer = setTimeout(function() {
-        //       _isRunning = false;
-        //       clearTimeout(_timer);
-        //     }, 1000);
-        //   };
-        //   return false;
-        // });
-        _li.find('a').hover(function() {
-          $(this).parent().find('a').stop();
-          new TextShuffle($(this).parent().attr('data-text'), $(this).parent().find('a'));          
+      var ts = [
+        new TextShuffle($('#link0').parent().attr('data-text'), $('#link0')),
+        new TextShuffle($('#link1').parent().attr('data-text'), $('#link1')),
+        new TextShuffle($('#link2').parent().attr('data-text'), $('#link2')),
+        new TextShuffle($('#link3').parent().attr('data-text'), $('#link3')),
+        new TextShuffle($('#link4').parent().attr('data-text'), $('#link4')),
+        new TextShuffle($('#link5').parent().attr('data-text'), $('#link5')),
+        new TextShuffle($('#link6').parent().attr('data-text'), $('#link6'))
+      ];
+      for (var i = 0; i < ts.length; i++) {
+        $('#link' + i).hover(function() {
+          ts[$(this).attr('data-index')].start();
+        }, function() {
+          ts[$(this).attr('data-index')].start();
         });
       };
+      console.log(ts);
     }
 
     function initContainer() {
@@ -65,13 +58,13 @@
     <div class="nav">
       <nav>
         <ul class="nav-list clearfix" id="nav-list">
-          <li class="bl" data-text="blog"><a href="http://sunouchi.jp/blog/">blog</a></li>
-          <li class="tw" data-text="twitter"><a href="https://twitter.com/sunouchi">twitter</a></li>
-          <li class="fb" data-text="facebook"><a href="https://www.facebook.com/takanari.sunouchi">facebook</a></li>
-          <li class="tb" data-text="tumblr"><a href="http://sunouchi.tumblr.com/">tumblr</a></li>
-          <li class="gh" data-text="github"><a href="https://github.com/sunouchi">github</a></li>
-          <li class="ml" data-text="contact"><a href="mailto:t@sunouchi.jp">contact</a></li>
-          <li class="" data-text="hogehogehogehogehogehogeghogehogehoge"><a href="#">hogehogehogehogehogehogeghogehogehoge</a></li>
+          <li class="bl" data-text="blog"><a id="link0" data-index="0" href="http://sunouchi.jp/blog/">blog</a></li>
+          <li class="tw" data-text="twitter"><a id="link1" data-index="1" href="https://twitter.com/sunouchi">twitter</a></li>
+          <li class="fb" data-text="facebook"><a id="link2" data-index="2" href="https://www.facebook.com/takanari.sunouchi">facebook</a></li>
+          <li class="tb" data-text="tumblr"><a id="link3" data-index="3" href="http://sunouchi.tumblr.com/">tumblr</a></li>
+          <li class="gh" data-text="github"><a id="link4" data-index="4" href="https://github.com/sunouchi">github</a></li>
+          <li class="ml" data-text="contact"><a id="link5" data-index="5" href="mailto:t@sunouchi.jp">contact</a></li>
+          <li class="" data-text="hogehogehogehogehogehogeghogehogehoge"><a id="link6" data-index="6" href="#">hogehogehogehogehogehogeghogehogehoge</a></li>
         </ul>
       </nav>
     </div>
