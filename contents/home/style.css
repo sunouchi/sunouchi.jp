@@ -14,8 +14,8 @@ a {
 
 /* .iframe-container */
 .iframe-container {
-  display: none;
-  /*height: 1000px;*/
+  /*display: none;*/
+  height: 1000px;
   width: 100%;
 }
 

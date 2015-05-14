@@ -11,16 +11,17 @@
 <script>
   (function() {
     var container;
-    var iframes;
+    var iframe;
     var timer = [];
 
     window.onload = function() {
       container = $('#iframe-container');
-      iframes = $('#iframe-container iframe');
+      iframe = $('#iframe-container iframe');
       container.css({
         width: '100%'
       });
-      initContainer();
+      resize();
+      $(window).on('resize', resize);
 
       var ts = [
         new TextShuffle($('#link0').parent().attr('data-text'), $('#link0')),
@@ -28,8 +29,7 @@
         new TextShuffle($('#link2').parent().attr('data-text'), $('#link2')),
         new TextShuffle($('#link3').parent().attr('data-text'), $('#link3')),
         new TextShuffle($('#link4').parent().attr('data-text'), $('#link4')),
-        new TextShuffle($('#link5').parent().attr('data-text'), $('#link5')),
-        new TextShuffle($('#link6').parent().attr('data-text'), $('#link6'))
+        new TextShuffle($('#link5').parent().attr('data-text'), $('#link5'))
       ];
       for (var i = 0; i < ts.length; i++) {
         $('#link' + i).hover(function() {
@@ -38,23 +38,25 @@
           ts[$(this).attr('data-index')].start();
         });
       };
-      console.log(ts);
     }
 
-    function initContainer() {
-      // container.width($(window).width());
+    function resize() {
+      container.width($(window).width());
       container.height($(window).height());
-      // iframes.width($(window).width());
-      iframes.height($(window).height());
+      loadIframe();
+    }
+
+    function loadIframe() {
+      var _width = $(window).width();
+      var _height = $(window).height() - 76; // navの高さ
+      container.html('<iframe src="contents/scrape_my_issues/index.html" frameborder="0" style="width: '+_width+'px; height: '+_height+ 'px;"></iframe>');
     }
   })($);
 </script>
 </head>
 <body>
   <div class="wrap">  
-    <div class="iframe-container" id="iframe-container">
-      <iframe src="contents/scrape_my_issues/index.html" frameborder="0"></iframe>
-    </div>
+    <div class="iframe-container" id="iframe-container"></div>
     <div class="nav">
       <nav>
         <ul class="nav-list clearfix" id="nav-list">
@@ -64,7 +66,6 @@
           <li class="tb" data-text="tumblr"><a id="link3" data-index="3" href="http://sunouchi.tumblr.com/">tumblr</a></li>
           <li class="gh" data-text="github"><a id="link4" data-index="4" href="https://github.com/sunouchi">github</a></li>
           <li class="ml" data-text="contact"><a id="link5" data-index="5" href="mailto:t@sunouchi.jp">contact</a></li>
-          <li class="" data-text="hogehogehogehogehogehogeghogehogehoge"><a id="link6" data-index="6" href="#">hogehogehogehogehogehogeghogehogehoge</a></li>
         </ul>
       </nav>
     </div>
