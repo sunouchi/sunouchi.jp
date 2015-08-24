@@ -29,7 +29,8 @@
         new TextShuffle($('#link2').parent().attr('data-text'), $('#link2')),
         new TextShuffle($('#link3').parent().attr('data-text'), $('#link3')),
         new TextShuffle($('#link4').parent().attr('data-text'), $('#link4')),
-        new TextShuffle($('#link5').parent().attr('data-text'), $('#link5'))
+        new TextShuffle($('#link5').parent().attr('data-text'), $('#link5')),
+        new TextShuffle($('#link6').parent().attr('data-text'), $('#link6'))
       ];
       for (var i = 0; i < ts.length; i++) {
         $('#link' + i).hover(function() {
@@ -60,12 +61,13 @@
     <div class="nav">
       <nav>
         <ul class="nav-list clearfix" id="nav-list">
-          <li class="bl" data-text="blog"><a id="link0" data-index="0" href="http://sunouchi.jp/blog/">blog</a></li>
-          <li class="tw" data-text="twitter"><a id="link1" data-index="1" href="https://twitter.com/sunouchi">twitter</a></li>
-          <li class="fb" data-text="facebook"><a id="link2" data-index="2" href="https://www.facebook.com/takanari.sunouchi">facebook</a></li>
-          <li class="tb" data-text="tumblr"><a id="link3" data-index="3" href="http://sunouchi.tumblr.com/">tumblr</a></li>
-          <li class="gh" data-text="github"><a id="link4" data-index="4" href="https://github.com/sunouchi">github</a></li>
-          <li class="ml" data-text="contact"><a id="link5" data-index="5" href="mailto:t@sunouchi.jp">contact</a></li>
+          <li class="bl" data-text="blog"><a id="link0" data-index="0" href="http://sunouchi.jp/blog/category/blog/">blog</a></li>
+          <li class="wk" data-text="works"><a id="link1" data-index="1" href="http://sunouchi.jp/blog/category/works">works</a></li>
+          <li class="tw" data-text="twitter"><a id="link2" data-index="2" href="https://twitter.com/sunouchi">twitter</a></li>
+          <li class="fb" data-text="facebook"><a id="link3" data-index="3" href="https://www.facebook.com/takanari.sunouchi">facebook</a></li>
+          <li class="tb" data-text="tumblr"><a id="link4" data-index="4" href="http://sunouchi.tumblr.com/">tumblr</a></li>
+          <li class="gh" data-text="github"><a id="link5" data-index="5" href="https://github.com/sunouchi">github</a></li>
+          <li class="ml" data-text="contact"><a id="link6" data-index="6" href="mailto:t@sunouchi.jp">contact</a></li>
         </ul>
       </nav>
     </div>
